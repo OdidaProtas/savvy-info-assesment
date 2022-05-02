@@ -1,6 +1,5 @@
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/box";
-import UsersList from "../components/UserList";
 import LoaderComponent from "../components/Loader";
 import RefreshButton from "../components/RefreshButton";
 import ErrorComponent from "../components/ErrorComponent";
@@ -12,21 +11,27 @@ import { useStateValue } from "../data/store";
 import { userPageNavOptions } from "../data/navdata";
 import { Link } from "react-router-dom";
 import { State } from "../types";
+import {lazy, Suspense} from "react"
+import ErrorBoundary from "../components/ErrorBoundary";
+
+const UsersList = lazy(()=>import("../components/UserList")) ;
+
 
 export default function Users() {
-  const { users, loadingUsers }: State = useStateValue() || {
-    users: [],
-    loadingUsers: false
-  };
-  const success = Boolean(users);
   const { error, refresh } = useUsers({ effects: [] });
+  const { users, loadingUsers }:State = useStateValue()
+  const success = Boolean(users);
 
   return (
     <>
       {success && (
         <Grid container>
           <Grid item xs={12} md={3} lg={4} sx={styles["list"]}>
-            <UsersList />
+            <ErrorBoundary>
+              <Suspense fallback={<LoaderComponent/>} >
+                  <UsersList users={users} />
+              </Suspense>
+            </ErrorBoundary>
           </Grid>
           <Grid item xs pl={2}>
             <Box sx={styles["link"]}>

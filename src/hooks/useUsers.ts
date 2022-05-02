@@ -12,6 +12,7 @@ export default function useUsers({ effects }: UseDataEffect) {
   //  Make network requests with axios
   const request = useRequest();
 
+
   async function updateList() {
     //   Prevents making duplicate API calls
     if (!Boolean(users) && !loadingUsers) {

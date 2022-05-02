@@ -18,11 +18,10 @@ export default function usePosts({ effects, dummy }: UseDataEffect) {
   async function updateList() {
     //   makes a loader component visible while updating data
     dispatch({ type: "TOGGLE_LOADER", context: "Posts" });
-
     // Dummy state  based caching to prevent multiple requests
-    const [cash, e] = getCash();
+    const [cash, noCash] = getCash();
 
-    if (!!e) {
+    if (!noCash) {
       // replaces current posts with cached postes
       dispatch({
         type: "Add_MULTIPLE",
@@ -49,14 +48,23 @@ export default function usePosts({ effects, dummy }: UseDataEffect) {
     if (err) setError(true);
   }
 
-  function saveCash(cash?: any) {
+  function saveCash() {
     //   Saves posts posts to to the posts archive
+
     dispatch({
       type: "CONCAT_MULTIPLE",
       context: "postsArchive",
-      payload: (cash || posts) as Post[]
+      payload: posts as Post[]
+    });
+    // Clear active posts
+    dispatch({
+      type: "CONCAT_MULTIPLE",
+      context: "posts",
+      payload: [] as Post[]
     });
   }
+
+  console.log(postsArchive);
 
   function getCash() {
     //   filters archived posts with user id

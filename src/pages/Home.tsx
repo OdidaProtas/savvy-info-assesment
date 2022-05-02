@@ -14,10 +14,7 @@ export default function Home() {
           Savannah Informatics React.js interview assesment
         </Typography>
         <Typography>
-          Submission by: <span className="author">Brian Odida</span>
-        </Typography>
-        <Typography variant="body2" sx={styles["date"]}>
-          Submission Date: 1/05/2022
+          Submission by: <MuiLink href="https://github.com/OdidaProtas" className="author">Brian Odida</MuiLink>
         </Typography>
         <Divider />
         <Stack spacing={2}>
@@ -25,7 +22,7 @@ export default function Home() {
           <Link to={"/Implementation"}>Implementation Guide</Link>
           <MuiLink
             target="blank"
-            href="https://github.com/OdidaProtas/savvy-assesment"
+            href="https://github.com/OdidaProtas/savvy-info-assesment"
           >
             Code Repository
           </MuiLink>

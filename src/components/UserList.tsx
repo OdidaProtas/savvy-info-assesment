@@ -12,10 +12,10 @@ import Paper from "@mui/material/Paper";
 
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { useStateValue } from "../data/Store";
-import { User } from "../types";
+import { State, User } from "../types";
 
-export default function UserList() {
-  const { users } = useStateValue();
+export default function UserList({users}:any) {
+
   const { url } = useRouteMatch();
   const { push } = useHistory();
 
@@ -31,7 +31,7 @@ export default function UserList() {
           overflow: "auto"
         }}
       >
-        {users.map(({ id, name, username, edited }: User) => (
+        {users?.map(({ id, name, username, edited }: User) => (
           <ListItem
             selected={id === selected}
             onClick={() => {

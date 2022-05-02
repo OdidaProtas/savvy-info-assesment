@@ -1,3 +1,5 @@
+import {State} from "../types";
+
 import { createContext, useReducer, useContext } from "react";
 
 // Create an innitial state to pass to the context API
@@ -18,7 +20,7 @@ export default function StoreProvider({ children }: any) {
 }
 
 // returns all data on store as object.
-export const useStateValue = () => (useContext(ContextApi) as any)[0];
+export const useStateValue = ():State => (useContext(ContextApi) as any)[0];
 
 // Gets an array of items from the stores for a specified key and filters the needed object
 export const useStateItem = (key: string, id: string) =>
