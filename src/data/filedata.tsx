@@ -14,7 +14,7 @@ import Home from "../pages/Home";
 import Implementation from "../pages/Implementation";
 import PageNotFound from "../pages/PageNotFound";
 import Users from "../pages/Users";
-import { useStateValue } from "./Store";
+import { useStateValue } from "./store";
 
 export var components = {
   name: "components",
@@ -360,4 +360,17 @@ export function getAllPages() {
 
 export function getPage(name: string): any {
   return (getAllPages() || []).filter((page) => page?.name === name)[0];
+}
+
+
+
+export function getTech(){
+  return [
+    {name:"Vite", desc:"Replaces webpack and react scripts for faster and better development experience"},
+    {name:"Material UI", desc:"Building basic UI Layout with MUI components "},
+    {name:"React router dom", desc:"Handles Application navigation and enables code splitting with react lazy and Suspense  "},
+    {name:"React Leaflet / Leaflet", desc:"Displays a map and a marker with the user's address"},
+    {name:"Material UI", desc:"Building basic UI Layout with MUI components "}
+
+  ]
 }

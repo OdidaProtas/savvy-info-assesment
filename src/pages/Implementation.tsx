@@ -66,12 +66,26 @@ function ImplementationDetil() {
 }
 
 function ImplementationOverview() {
+  const packs = filedata["getTech"]() as any
   return (
     <>
       <Box sx={{ p: 5 }}>
         <Typography>
           Each folder / file corresponds to its file in the project
         </Typography>
+        <Divider sx={{my:2}} />
+        <Typography>
+          Tech stack used.
+        </Typography>
+        <Stack  spacing={2} >
+          {packs?.map((pack:any)=>(
+          <Box>          
+              <Typography variant="h5" >{pack.name}</Typography>
+              <Typography variant="body1" >{pack.desc}</Typography>
+              <Divider/>
+          </Box>) 
+          )}
+        </Stack>
       </Box>
     </>
   );
